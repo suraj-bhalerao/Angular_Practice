@@ -1,0 +1,66 @@
+<div class="row">
+    <div class="col-7">
+        <div class="card">
+            <div class="card-header bg-success text-white font-weight-bold">
+                Users List
+            </div>
+
+            <div class="card-body">
+                <table class="table table-striped table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Password</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of getAllUsers; track $index) {
+                        <tr>
+                            <td>{{item.fullName}}</td>
+                            <td>{{item.emailId}}</td>
+                            <td>{{item.mobileNo}}</td>
+                            <td>{{item.password}}</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class="col-5">
+        <div class="card">
+            <div class="card-header bg-success text-white font-weight-bold">
+                New User Form
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <label for=""><strong>Full Name</strong></label>
+                        <input type="text" class="form-control" placeholder="Full Name" [(ngModel)]="userObj.fullName">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for=""><strong>Email Id</strong></label>
+                        <input type="text" class="form-control" placeholder="Email Id" [(ngModel)]="userObj.emailId">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for=""><strong>Mobile</strong></label>
+                        <input type="text" class="form-control" placeholder="Mobile" [(ngModel)]="userObj.mobileNo">
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label for=""><strong>Password</strong></label>
+                        <input type="text" class="form-control" placeholder="Password" [(ngModel)]="userObj.password">
+                    </div>
+                    <div class="col-12 d-flex justify-content-end">
+                        <button class="btn btn-success me-2" (click)="addUser()">Add User</button>
+                        <button class="btn btn-secondary" (click)="clear()">Clear Form</button>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</div>
