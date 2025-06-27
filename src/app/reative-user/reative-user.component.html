@@ -1,0 +1,72 @@
+<div class="row">
+    <div class="col-7">
+        <div class="card">
+            <div class="card-header bg-info text-white font-weight-bold">
+                Users List
+            </div>
+
+            <div class="card-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Phone</th>
+                            <th>Password</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (item of getAllUsers; track $index) {
+                        <tr>
+                            <td>{{item.fullName}}</td>
+                            <td>{{item.emailId}}</td>
+                            <td>{{item.mobileNo}}</td>
+                            <td>{{item.password}}</td>
+                            <td class="text-center gap-5">
+                                <button class="btn btn-primary">Edit</button>
+                                <button class="btn btn-danger">Delete</button>
+                            </td>
+                            }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div class=" col-5">
+        <div class="card">
+            <div class="card-header bg-danger text-white font-weight-bold">
+                New User Form
+            </div>
+
+            <div class="card-body">
+                <form [formGroup]="userForm">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-12 mb-3">
+                                <label for=""><strong>Full Name</strong></label>
+                                <input type="text" class="form-control" formControlName="fullName">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for=""><strong>Email Id</strong></label>
+                                <input type="text" class="form-control" formControlName="emailId">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for=""><strong>Mobile</strong></label>
+                                <input type="text" class="form-control" formControlName="mobileNo">
+                            </div>
+                            <div class="col-12 mb-3">
+                                <label for=""><strong>Password</strong></label>
+                                <input type="text" class="form-control" formControlName="password">
+                            </div>
+                            <div class="col-12 d-flex justify-content-end">
+                                <button class="btn btn-success me-2" (click)="saveUser()">Save</button>
+                                <button class="btn btn-secondary">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
