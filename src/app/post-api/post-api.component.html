@@ -13,6 +13,7 @@
                             <th>Email</th>
                             <th>Phone</th>
                             <th>Password</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -22,6 +23,10 @@
                             <td>{{item.emailId}}</td>
                             <td>{{item.mobileNo}}</td>
                             <td>{{item.password}}</td>
+                            <td class="d-flex justify-content-end align-items-center gap-2">
+                                <button class="btn btn-primary btn-sm" (click)="editUser(item)">Edit</button>
+                                <button class="btn btn-danger btn-sm" (click)="deleteUser(item.userId)">Delete</button>
+                            </td>
                         </tr>
                         }
                     </tbody>
@@ -29,7 +34,7 @@
             </div>
         </div>
     </div>
-    <div class="col-5">
+    <div class=" col-5">
         <div class="card">
             <div class="card-header bg-success text-white font-weight-bold">
                 New User Form
@@ -54,8 +59,12 @@
                         <input type="text" class="form-control" placeholder="Password" [(ngModel)]="userObj.password">
                     </div>
                     <div class="col-12 d-flex justify-content-end">
-                        <button class="btn btn-success me-2" (click)="addUser()">Add User</button>
-                        <button class="btn btn-secondary" (click)="clear()">Clear Form</button>
+                        @if (userObj.userId == 0) {
+                        <button class="btn btn-success me-2" (click)="addUser()">Save</button>
+                        }@else {
+                        <button class="btn btn-warning me-2" (click)="updateUser()">Update</button>
+                        }
+                        <button class="btn btn-secondary" (click)="clear()">Reset</button>
                     </div>
                 </div>
             </div>

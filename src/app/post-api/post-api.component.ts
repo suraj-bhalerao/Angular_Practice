@@ -16,7 +16,10 @@ export class PostApiComponent implements OnInit {
 	http = inject(HttpClient);
 	getUsersUrl = "https://api.freeprojectapi.com/api/GoalTracker/getAllUsers";
 	createUserUrl = "https://api.freeprojectapi.com/api/GoalTracker/register";
+	updateUserUrl = "https://api.freeprojectapi.com/api/GoalTracker/updateUser";
+	deleteUserUrl = "https://api.freeprojectapi.com/api/GoalTracker/deleteUserById";
 	userObj = {
+		userId: 0,
 		emailId: "",
 		password: "",
 		fullName: "",
@@ -66,12 +69,43 @@ export class PostApiComponent implements OnInit {
 		}
 	}
 
+	updateUser() {
+		this.http.put<any>(`${this.updateUserUrl}?id=${this.userObj.userId}`, this.userObj).subscribe({
+			next: (res: any) => {
+				console.log("User updated successfully:", res);
+				this.getUsers();
+				this.clear();
+			},
+			error: (err) => {
+				console.error("Error updating user:", err);
+			},
+		});
+	}
+
+	deleteUser(id: number) {
+		this.http.delete<any>(`${this.deleteUserUrl}?id=${id}`).subscribe({
+			next: (res: any) => {
+				console.log("User deleted successfully:", res);
+				this.getUsers();
+			},
+			error: (err) => {
+				console.error("Error deleting user:", err);
+			},
+		});
+		this.clear();
+	}
+
 	clear() {
 		this.userObj = {
+			userId: 0,
 			emailId: "",
 			password: "",
 			fullName: "",
 			mobileNo: "",
 		};
+	}
+
+	editUser(item: any) {
+		this.userObj = item;
 	}
 }
