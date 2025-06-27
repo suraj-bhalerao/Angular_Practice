@@ -83,16 +83,19 @@ export class PostApiComponent implements OnInit {
 	}
 
 	deleteUser(id: number) {
-		this.http.delete<any>(`${this.deleteUserUrl}?id=${id}`).subscribe({
-			next: (res: any) => {
-				console.log("User deleted successfully:", res);
-				this.getUsers();
-			},
-			error: (err) => {
-				console.error("Error deleting user:", err);
-			},
-		});
-		this.clear();
+		const confirmDelete = confirm("Are you sure you want to delete this user?");
+		if (confirmDelete) {
+			this.http.delete<any>(`${this.deleteUserUrl}?id=${id}`).subscribe({
+				next: (res: any) => {
+					console.log("User deleted successfully:", res);
+					this.getUsers();
+				},
+				error: (err) => {
+					console.error("Error deleting user:", err);
+				},
+			});
+			this.clear();
+		}
 	}
 
 	clear() {
